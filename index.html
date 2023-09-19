@@ -21,49 +21,34 @@
     const mp3Files = dasuifhlsiuefhasuilefyasefhaseufashe;
 
 
-
 function createAudioPlayer(filename) {
     const audioElement = document.createElement('audio');
     audioElement.src = `${musicFolder}/${filename}`;
     audioElement.controls = true;
 
-    // Create a container div for the label and audio player
     const containerDiv = document.createElement('div');
-    containerDiv.style.border = '1px solid #000'; // Add a border around the container
-    containerDiv.style.padding = '10px'; // Add some padding to the container
-    containerDiv.style.marginBottom = '10px'; // Add spacing below the container
-    containerDiv.style.maxWidth = '400px'; // Set a maximum width for the container
-    containerDiv.style.margin = '0 auto'; // Center the container horizontally
+    containerDiv.style.border = '1px solid #000';
+    containerDiv.style.padding = '10px';
+    containerDiv.style.marginBottom = '10px';
+    containerDiv.style.maxWidth = '400px';
+    containerDiv.style.margin = '0 auto';
 
-    // Create a div for the label
     const labelDiv = document.createElement('div');
-    labelDiv.textContent = filename; // Replace with your desired label text
-    labelDiv.style.textAlign = 'center'; // Center align the label
+    labelDiv.textContent = filename;
+    labelDiv.style.textAlign = 'center';
     labelDiv.style.marginBottom = '7px';
 
-    // Append label div and audio element to the container
     containerDiv.appendChild(labelDiv);
     containerDiv.appendChild(audioElement);
 
-    // Append the container to the musicContainer or any desired parent element
     musicContainer.appendChild(containerDiv);
 }
-
-
-
-
-
 
     mp3Files.forEach(fileName => {
         createAudioPlayer(fileName);
     });
 
 </script>
-
-
-
-
-
 
 
 <style>
