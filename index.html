@@ -17,6 +17,9 @@
 
     // Replace 'music' with your actual folder name.
     const musicFolder = 'music';
+    const mp3Files = ['Project32.mp3'];
+
+
 
     // Function to generate the HTML for an audio player for each MP3 file.
     function createAudioPlayer(filename) {
@@ -32,20 +35,10 @@
     }
 
     // Fetch the list of MP3 files and create audio players for each one.
-    fetch(`${musicFolder}/`)
-        .then(response => response.text())
-        .then(data => {
-            const fileNames = data
-                .split('\n')
-                .filter(fileName => fileName.endsWith('.mp3'));
+    mp3Files.forEach(fileName => {
+        createAudioPlayer(fileName);
+    });
 
-            fileNames.forEach(fileName => {
-                createAudioPlayer(fileName);
-            });
-        })
-        .catch(error => {
-            console.error('damn it:', error);
-        });
 </script>
 
 
