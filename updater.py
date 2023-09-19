@@ -1,4 +1,5 @@
 from os import listdir
+import os
 import time
 from git.repo import Repo
 
@@ -6,11 +7,29 @@ html_file_path = 'index.html'
 
 
 musics = listdir("music")
-print(f'this is all the music {musics}')
+full_musics = []
+for name in musics:
+	full_musics.append("music/" + name)
+
+
+full_musics.sort(key=os.path.getmtime)
+
+print(full_musics)
+musics = []
+for song in full_musics:
+	musics.append(song[6:])
+
+
+print(f'this is all the sorted music:')
+
+for song in musics:
+	print(song)
+
+print("\n\n")
 
 new_line_content = f"    const dasuifhlsiuefhasuilefyasefhaseufashe = {musics};"
 
-print(f'generated new line content:\n{new_line_content}\n')
+print(f'generated new line content:\n\n{new_line_content}\n')
 
 print(f'locating line in {html_file_path}\n')
 
