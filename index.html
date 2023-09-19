@@ -6,19 +6,53 @@
     <title>you are in the vault</title>
 </head>
 <body>
-    <h1>Welcome to the best music in the land</h1>
-
-    <audio src="/music/Project_32.mp3" controls> 
-    <p>shit it didn't work.</p>
-    </audio>
-
-
-
-
-
-
+    <h1>welcome to the best music in the land</h1>
+    <div id="music-container"></div>
 </body>
 </html>
+
+
+<script>
+    const musicContainer = document.getElementById('music-container');
+
+    // Replace 'music' with your actual folder name.
+    const musicFolder = 'music';
+
+    // Function to generate the HTML for an audio player for each MP3 file.
+    function createAudioPlayer(filename) {
+        const audioElement = document.createElement('audio');
+        audioElement.src = `${musicFolder}/${filename}`;
+        audioElement.controls = true;
+
+        const errorMessage = document.createElement('p');
+        errorMessage.textContent = 'shit it didnt work';
+
+        audioElement.appendChild(errorMessage);
+        musicContainer.appendChild(audioElement);
+    }
+
+    // Fetch the list of MP3 files and create audio players for each one.
+    fetch(`${musicFolder}/`)
+        .then(response => response.text())
+        .then(data => {
+            const fileNames = data
+                .split('\n')
+                .filter(fileName => fileName.endsWith('.mp3'));
+
+            fileNames.forEach(fileName => {
+                createAudioPlayer(fileName);
+            });
+        })
+        .catch(error => {
+            console.error('damn it:', error);
+        });
+</script>
+
+
+
+
+
+
 
 <style>
     body {
