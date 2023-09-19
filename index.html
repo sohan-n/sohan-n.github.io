@@ -15,11 +15,12 @@
 <script>
     const musicContainer = document.getElementById('music-container');
 
-    // Replace 'music' with your actual folder name.
     const musicFolder = 'music';
-    const mp3Files = ['Project32.mp3'];
+    const mp3Files = [];
 
-    // Function to generate the HTML for an audio player for each MP3 file.
+
+    
+
     function createAudioPlayer(filename) {
         const audioElement = document.createElement('audio');
         audioElement.src = `${musicFolder}/${filename}`;
@@ -32,7 +33,23 @@
         musicContainer.appendChild(audioElement);
     }
 
-    // Fetch the list of MP3 files and create audio players for each one.
+    function readTextFileAndPopulateArray(filename) {
+    fetch(filename)
+        .then(response => response.text())
+        .then(data => {
+            // Split the text by newline characters to create an array of filenames.
+            mp3Files.push(...data.split('\n').filter(fileName => fileName.trim() !== ''));
+
+            // Call the function to create audio players with filenames.
+            mp3Files.forEach(createAudioPlayerWithFilename);
+        })
+        .catch(error => {
+            console.error('Error reading file:', error);
+        });
+    }
+
+    readTextFileAndPopulateArray('filenames.txt');
+
     mp3Files.forEach(fileName => {
         createAudioPlayer(fileName);
     });
