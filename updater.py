@@ -11,13 +11,13 @@ full_musics = []
 for name in musics:
 	full_musics.append("music/" + name)
 
-
+print(full_musics)
 full_musics.sort(key=os.path.getmtime)
 
-print(full_musics)
+
 musics = []
 for song in full_musics:
-	musics.append(song[6:])
+	musics.insert(0,song[6:])
 
 
 print(f'this is all the sorted music:')
